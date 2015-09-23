@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
+  get 'welcome/home'
+
   get 'sessions/new'
 
-  root 'application#index'
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  get 'sessions/new'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+  root 'welcome#home'
 
   resources :users
   resources :admins
