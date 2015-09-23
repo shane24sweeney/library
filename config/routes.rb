@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'sessions/new'
 
+  root 'application#index'
+
   resources :users
   resources :admins
   resources :books
