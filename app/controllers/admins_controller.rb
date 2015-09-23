@@ -1,5 +1,5 @@
-class AdminController < ApplicationController
-before_action :set_admin, only: [:show, :edit, :update, :destroy]
+class AdminsController < ApplicationController
+  before_action :set_admin, only: [:show, :edit, :update, :destroy]
 
   # GET /admins
   # GET /admins.json
