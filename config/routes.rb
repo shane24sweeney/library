@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :admins
   resources :books
+  resources :profiles, only: [:edit]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -58,6 +59,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  resources :profiles, only: [:edit]
 end
