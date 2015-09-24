@@ -5397,3 +5397,61 @@ ActionView::Template::Error (Invalid CSS after "": expected selector, was "-----
   Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
   Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
   Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (190.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-23 23:20:36 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#home as HTML
+  Rendered welcome/home.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 9087ms (Views: 9036.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2015-09-23 23:20:51 -0700
+Processing by UsersController#new as HTML
+  Rendered users/_form.html.erb (115.7ms)
+  Rendered users/new.html.erb within layouts/application (137.7ms)
+Completed 200 OK in 681ms (Views: 631.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2015-09-23 23:20:55 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (42.0ms)
+Completed 200 OK in 586ms (Views: 584.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2015-09-23 23:21:01 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bKF1oYQJGOsNiQzcPxDG7zANConfZL7qD2YK18PKrg9gHQftnIM+LP2QzXSl2cAt3ofIxVyU9qhnZAaKhtNySA==", "session"=>{"email"=>"bogus@bogus.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "bogus@bogus.com"]]
+  Rendered sessions/new.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 699ms (Views: 552.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2015-09-23 23:21:34 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WD6NeIY9H3mYa/J6QaH5rme1b2ZHVbDhVSq86lgL4ahUgv80nrc5vmhyM9LbaP9siT+tKsSl+KM9KLC3HRI97w==", "session"=>{"email"=>"GGGGGG@nvnvnvnvn", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "gggggg@nvnvnvnvn"]]
+  Rendered sessions/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 744ms (Views: 738.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2015-09-23 23:21:42 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 726ms (Views: 725.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2015-09-23 23:21:48 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"iZOEh+K97ah6b+j3Cej1Bd9YehLXn628eyqpd/ZaiF2FL/bL+jfLb4p2KV+TIfPHMdK4XlRv5f4TKKUqs0NUGg==", "session"=>{"email"=>"bogus@bogus.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1  [["email", "bogus@bogus.com"]]
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-09-23 23:21:48 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 695ms (Views: 690.1ms | ActiveRecord: 0.0ms)
