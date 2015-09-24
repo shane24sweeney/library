@@ -14,11 +14,22 @@
 <body>
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-     <!--link_to "sample app", '#', id: "logo"* -->
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Log in", login_path %></li>
+        <% if logged_in_admin? %>
+        <li><%= link_to "Users", users_path %></li>
+        <li><%= link_to "Admins", admins_path %></li>
+        <li><%= link_to "Welcome #{current_admin.name}!", current_admin %></li>
+        <li><%= link_to "Logout", sessions_destroy_path %></li>
+        <% elsif logged_in_user? %>
+            <li><%= link_to "Users", users_path %></li>
+            <li><%= link_to "Welcome #{current_user.name}!", current_user %></li>
+            <li><%= link_to "Logout", sessions_destroy_path %></li>
+        <% else %>
+            <li><%= link_to "Log in as user", login_user_path %></li>
+            <li><%= link_to "Log in as admin", login_admin_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>

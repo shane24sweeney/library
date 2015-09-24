@@ -1,6 +1,11 @@
-<h1>Editing User</h1>
+<% if !( logged_in_user? || !logged_in_admin? ) %>
+    <% redirect_to root_path %>
+<% else %>
 
-<%= render 'form' %>
+    <h1>Editing User</h1>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+    <%= render 'form' %>
+
+    <%= link_to 'Show', @user %> |
+    <%= link_to 'Back', users_path %>
+<% end %>

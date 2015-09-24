@@ -5,7 +5,7 @@ gem 'rails', '4.2.4'
 #use bootstrap for styling
 gem 'bootstrap-sass'
 # Use mysql as the database for Active Record
-gem 'mysql2','~> 0.3.18'
+gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -15,6 +15,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'sqlite3'
+#gem for password verification
+gem 'bcrypt', '~> 3.1.7'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -30,6 +32,7 @@ end
 group :test do
   gem 'capybara', '~> 2.1.0'
 end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
   get 'welcome/home'
 
-  get 'sessions/new'
+  get 'sessions/new_user'
 
-  get 'sessions/create'
+  get 'sessions/create_user'
+
+  get 'sessions/new_admin'
+
+  get 'sessions/create_admin'
 
   get 'sessions/destroy'
 
-  get 'sessions/new'
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
+  get 'sessions/new_user'
+  get 'login_user' => 'sessions#new_user'
+  post 'login_user' => 'sessions#create_user'
+  get 'login_admin' => 'sessions#new_admin'
+  post 'login_admin' => 'sessions#create_admin'
   delete 'logout' => 'sessions#destroy'
   root 'welcome#home'
 
