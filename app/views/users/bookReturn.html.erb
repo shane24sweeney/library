@@ -22,7 +22,7 @@
         <td><%= book.authors %></td>
         <!--<td><%= book.ISBN %></td>-->
         <td><%= book.status %></td>
-        <td><%= link_to 'Return Book ', book.status = "Available" %></td>
+        <td><%= link_to 'Return Book ', borrow_book_path(book), :class => 'btn' %></td>
       </tr>
   <% end %>
   </tbody>
