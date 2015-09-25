@@ -6,11 +6,7 @@ class Book < ActiveRecord::Base
   end
 
   def self.search(search)
-    where("title LIKE ?", "%#{search}%")
-    where("description LIKE ?", "%#{search}%")
-    where("ISBN LIKE ?", "%#{search}%")
-    where("authors LIKE ?", "%#{search}%")
-    where("status LIKE ?", "%#{search}%")
+    where("title LIKE ? OR description LIKE ? OR ISBN LIKE ? OR authors LIKE ? OR status LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 
 end
