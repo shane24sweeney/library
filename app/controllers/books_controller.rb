@@ -21,6 +21,15 @@ class BooksController < ApplicationController
   def edit
   end
 
+  # POST /books/1/borrow
+  def borrow
+    @book = Book.find(params[:id])
+    @book.status = !@book.status
+    @book.save
+
+    redirect_to books_path(book)
+  end
+
   # POST /books
   # POST /books.json
   def create
