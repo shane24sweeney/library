@@ -11,33 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924062722) do
+ActiveRecord::Schema.define(version: 20150925033626) do
 
   create_table "admins", force: :cascade do |t|
-    t.string "email"
-    t.string "name"
-    t.string "password"
-    t.string "status"
-    t.string "profile"
+    t.string   "email"
+    t.string   "name"
+    t.string   "password"
+    t.string   "status"
+    t.string   "profile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "authors"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title"
+    t.string   "description"
+    t.string   "authors"
+    t.string   "status"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "isbn",        default: "", null: false
+    t.string   "user_id",     default: ""
   end
 
+  add_index "books", ["isbn"], name: "index_books_on_isbn"
+
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "name"
-    t.string "password"
-    t.string "status"
-    t.string "profile"
+    t.string   "email"
+    t.string   "name"
+    t.string   "password"
+    t.string   "status"
+    t.string   "profile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

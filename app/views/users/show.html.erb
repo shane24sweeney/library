@@ -17,11 +17,10 @@
 </p>
 
 <p>
-  <%= link_to 'Checkout Book', users_path %>
+  <%= link_to 'Checkout Book', books_path %>
 </p>
 
 <p>
-  <%= link_to 'Return Book', users_path %>
 
   <h1>Currently Checked Out Books</h1>
     <table cellpadding="10">
@@ -44,7 +43,7 @@
             <td><%= book.authors %></td>
             <!--<td><%= book.ISBN %></td>-->
             <td><%= book.status %></td>
-            <td><%= link_to 'Return Book ', book.status = "Available" %></td>
+            <td><%= link_to 'Return Book ', book.status = 1 %></td>
           </tr>
       <% end %>
       </tbody>

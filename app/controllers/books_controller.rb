@@ -5,6 +5,11 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
+    if params[:search]
+      @books = Book.search(params[:search]).order("created_at DESC")
+    else
+      @books = Book.all.order('created_at DESC')
+    end
   end
 
   # GET /books/1
@@ -27,7 +32,7 @@ class BooksController < ApplicationController
     @book.status = !@book.status
     @book.save
 
-    redirect_to books_path(book)
+    redirect_to books_path(@book)
   end
 
   # POST /books
