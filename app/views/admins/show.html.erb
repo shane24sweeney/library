@@ -15,15 +15,10 @@
   <%= @admin.password %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @admin.status %>
-</p>
-
-<p>
-  <strong>Profile:</strong>
-  <%= @admin.profile %>
-</p>
+<%= link_to 'Add User ', new_user_path, :class => 'btn' %>
+<%= link_to 'Add Book ', new_book_path, :class => 'btn' %>
+<%= link_to 'Manage Users ', users_path, :class => 'btn' %>
+<%= link_to 'Manage Books', books_path, :class => 'btn' %>
 
 <%= link_to 'Edit', edit_admin_path(@admin) %> |
 <%= link_to 'Back', admins_path %>

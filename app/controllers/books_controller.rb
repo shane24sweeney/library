@@ -12,6 +12,17 @@ class BooksController < ApplicationController
     end
   end
 
+  # GET /books
+  # GET /books.json
+  def indexForMembers
+    @books = Book.all
+    if params[:search]
+      @books = Book.search(params[:search]).order("created_at DESC")
+    else
+      @books = Book.all.order('created_at DESC')
+    end
+  end
+
   # GET /books/1
   # GET /books/1.json
   def show

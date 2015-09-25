@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     member do
       get :borrow
       get :return
+      get :indexForMembers
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
