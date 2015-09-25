@@ -36,6 +36,16 @@ class BooksController < ApplicationController
     redirect_to books_path(@book)
   end
 
+  # POST /books/1/borrow
+  def return
+    @book = Book.find(params[:id])
+    @book.status = "Available"
+    @book.user_id = nil
+    @book.save
+
+    redirect_to books_path(@book)
+  end
+
   # POST /books
   # POST /books.json
   def create

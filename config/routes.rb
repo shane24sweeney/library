@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :books do
     member do
       get :borrow
+      get :return
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
