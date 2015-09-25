@@ -29,7 +29,8 @@ class BooksController < ApplicationController
   # POST /books/1/borrow
   def borrow
     @book = Book.find(params[:id])
-    @book.status = !@book.status
+    @book.status = "Checked out"
+    @book.user_id = @current_user
     @book.save
 
     redirect_to books_path(@book)
