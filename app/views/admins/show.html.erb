@@ -10,10 +10,12 @@
   <%= @admin.name %>
 </p>
 
+<% if current_admin.name == @admin.name %>
 <p>
   <strong>Password:</strong>
   <%= @admin.password %>
 </p>
+<%end%>
 
 <%= link_to 'Add User ', new_user_path, :class => 'btn' %>
 <%= link_to 'Add Book ', new_book_path, :class => 'btn' %>
