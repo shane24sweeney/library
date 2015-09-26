@@ -25,7 +25,14 @@
   <%= @book.status %>
 </p>
 
-<%if @book.status == "Available"%>
+<p>
+  <% if current_admin.present? && @book.borrower.present?%>
+      <strong>Borrower:</strong>
+      <%= @book.borrower %>
+  <%end%>
+</p>
+
+<%if @book.status == "Available" && current_user.present?%>
     <%= link_to "Check Out Book", borrow_book_path(@book), :class => 'btn' %> |
 <%end%>
 <% if current_admin.present? %>
