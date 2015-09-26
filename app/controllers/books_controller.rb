@@ -41,20 +41,22 @@ class BooksController < ApplicationController
   def borrow
     @book = Book.find(params[:id])
     @book.status = "Checked out"
-    @book.user_id = @current_user
+    @book.user_id = current_user
+    @book.borrower = current_user.name
     @book.save
 
-    redirect_to books_path(@book)
+    redirect_to indexForMembers_book_path
   end
 
-  # POST /books/1/borrow
+  # POST /books/1/return
   def return
     @book = Book.find(params[:id])
     @book.status = "Available"
     @book.user_id = nil
+    @book.borrower = nil
     @book.save
 
-    redirect_to books_path(@book)
+    redirect_to current_user
   end
 
   # POST /books
@@ -105,6 +107,6 @@ class BooksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def book_params
-    params.require(:book).permit(:title, :description, :authors, :status)
+    params.require(:book).permit(:title, :isbn, :description, :authors, :status)
   end
 end

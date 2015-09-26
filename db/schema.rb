@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925060403) do
+ActiveRecord::Schema.define(version: 20150925180350) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150925060403) do
     t.datetime "updated_at",               null: false
     t.string   "isbn",        default: "", null: false
     t.string   "user_id",     default: ""
+    t.string   "borrower",    default: ""
   end
 
   add_index "books", ["isbn"], name: "index_books_on_isbn"

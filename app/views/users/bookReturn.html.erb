@@ -8,7 +8,7 @@
     <th>Title</th>
     <th>Description</th>
     <th>Authors</th>
-    <!--<th>ISBN</th>-->
+    <th>ISBN</th>
     <th>Status</th>
     <th colspan="1"></th>
   </tr>
@@ -20,7 +20,7 @@
         <td><%= book.title %></td>
         <td><%= book.description %></td>
         <td><%= book.authors %></td>
-        <!--<td><%= book.ISBN %></td>-->
+        <td><%= book.ISBN %></td>
         <td><%= book.status %></td>
         <td><%= link_to 'Return Book ', borrow_book_path(book), :class => 'btn' %></td>
       </tr>

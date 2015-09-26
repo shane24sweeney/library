@@ -27,23 +27,21 @@
       <thead>
       <tr>
         <th>Title</th>
+        <th>ISBN</th>
         <th>Description</th>
         <th>Authors</th>
-        <!--<th>ISBN</th>-->
-        <th>Status</th>
         <th colspan="1"></th>
       </tr>
       </thead>
 
       <tbody>
-      <%@books = Book.search(params[@user.id]) %>
+      <%@books = Book.where(borrower: @user.name) %>
       <% @books.each do |book| %>
           <tr>
             <td><%= book.title %></td>
             <td><%= book.isbn %></td>
             <td><%= book.description %></td>
             <td><%= book.authors %></td>
-            <td><%= book.status %></td>
             <td><%= link_to 'Return Book ', return_book_path(book.id), :class => 'btn' %></td>
           </tr>
       <% end %>
@@ -51,15 +49,5 @@
     </table>
     <br>
 </p>
-
-<!--<p>-->
-<!--<strong>Status:</strong>-->
-<!--<%= @user.status %>-->
-<!--</p>-->
-
-<!--<p>-->
-<!--<strong>Profile:</strong>-->
-<!--<%= @user.profile %>-->
-<!--</p>-->
 
 <%= link_to 'Edit', edit_user_path(@user) %>

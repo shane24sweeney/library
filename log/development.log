@@ -8033,3 +8033,121 @@ Migrating to AddBooksToUsers (20150925060403)
             FROM sqlite_temp_master
             WHERE name='index_users_on_email' AND type='index'
 
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddBorrowerToBooks (20150925180350)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (21.1ms)[0m  [1mALTER TABLE "books" ADD "borrower" varchar DEFAULT '' NOT NULL[0m
+  [1m[35mSQL (11.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150925180350"]]
+  [1m[36m (326.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_books_on_isbn' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_books_on_isbn' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_books_on_isbn' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_books_on_isbn' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to AddBorrowerToBooks (20150925180350)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (15.5ms)[0m  CREATE TEMPORARY TABLE "abooks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "authors" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "isbn" varchar DEFAULT '' NOT NULL, "user_id" varchar DEFAULT '', "borrower" varchar DEFAULT '' NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_books_on_isbn' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_books_on_isbn' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "tindex_abooks_on_isbn" ON "abooks" ("isbn")[0m
+  [1m[35m (0.2ms)[0m  SELECT * FROM "books"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "abooks" ("id","title","description","authors","status","created_at","updated_at","isbn","user_id","borrower") VALUES (10, 'Fenton the Cat', 'Cat goes crazy in NC', 'me', 'available', '2015-09-25 18:24:44.998267', '2015-09-25 18:24:44.998267', '1111', '', '')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "abooks" ("id","title","description","authors","status","created_at","updated_at","isbn","user_id","borrower") VALUES (11, 'War and Peace', 'long book', 'Tolstoy', 'available', '2015-09-25 18:25:02.000651', '2015-09-25 18:25:02.000651', '2222', '', '')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "abooks" ("id","title","description","authors","status","created_at","updated_at","isbn","user_id","borrower") VALUES (12, 'Peace and War', 'the SQL', 'Stoytol', 'available', '2015-09-25 18:25:23.119662', '2015-09-25 18:25:23.119662', '3333', '', '')[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "books"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "authors" varchar, "status" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "isbn" varchar DEFAULT '' NOT NULL, "user_id" varchar DEFAULT '') [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_abooks_on_isbn' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_abooks_on_isbn' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_books_on_isbn" ON "books" ("isbn")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "abooks"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "books" ("id","title","description","authors","status","created_at","updated_at","isbn","user_id") VALUES (10, 'Fenton the Cat', 'Cat goes crazy in NC', 'me', 'available', '2015-09-25 18:24:44.998267', '2015-09-25 18:24:44.998267', '1111', '')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "books" ("id","title","description","authors","status","created_at","updated_at","isbn","user_id") VALUES (11, 'War and Peace', 'long book', 'Tolstoy', 'available', '2015-09-25 18:25:02.000651', '2015-09-25 18:25:02.000651', '2222', '')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "books" ("id","title","description","authors","status","created_at","updated_at","isbn","user_id") VALUES (12, 'Peace and War', 'the SQL', 'Stoytol', 'available', '2015-09-25 18:25:23.119662', '2015-09-25 18:25:23.119662', '3333', '')[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "abooks"
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20150925180350"]]
+  [1m[35m (393.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_books_on_isbn' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_books_on_isbn' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddBorrowerToBooks (20150925180350)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "books" ADD "borrower" varchar DEFAULT ''[0m
+  [1m[35mSQL (13.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150925180350"]]
+  [1m[36m (41.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_books_on_isbn' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_books_on_isbn' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+

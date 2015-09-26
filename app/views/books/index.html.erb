@@ -14,6 +14,7 @@
     <th>Description</th>
     <th>Authors</th>
     <th>Status</th>
+    <th>Borrowed By</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -25,6 +26,7 @@
             <td><%= book.description %></td>
             <td><%= book.authors %></td>
             <td><%= book.status %></td>
+            <td><%= book.borrower %></td>
             <td><%= link_to 'Show', book %></td>
             <td><%= link_to 'Edit', edit_book_path(book) %></td>
             <td><%= link_to 'Destroy', book, method: :delete, data: {confirm: 'Are you sure?'} %></td>

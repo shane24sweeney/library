@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
             uniqueness: {case_sensitive: false}
   validates :password, presence: true, length: {minimum: 6}
   has_many :books
+  cattr_accessor :current_user
 end

@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
+  before_filter do |c|
+    User.current_user = c.session[:user].present? ? User.find(c.session[:user]) : nil
+  end
+
   def home
     @user = User.new
   end
