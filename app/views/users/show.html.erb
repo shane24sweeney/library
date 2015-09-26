@@ -11,10 +11,12 @@
   <%= @user.name %>
 </p>
 
+<% if current_user.present? %>
 <p>
   <strong>Password:</strong>
   <%= @user.password %>
 </p>
+<%end%>
 
 <p>
   <%= link_to 'Checkout Book', indexForMembers_book_path %>
