@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+<<<<<<< HEAD
 (1..10).each do |x|
   Book.create!(isbn: x+107678, title: "Book No.#{x}", desc: "description #{x}", author: "Author #{x}")
 end
@@ -22,3 +23,8 @@ Admin.create!(name: "Kellie Jos", password: "password", password_confirmation: "
 
 
 User.create!(name: "Kellie Jos", password: "password", password_confirmation: "password", email: "kmjos@ncsu.edu")
+=======
+admins = Admin.create([{email: 'admin@gmail.com', password: 'password'}])
+admins = Admin.create([{email: 'admin2@gmail.com', password: 'password'}])
+
+>>>>>>> 2e577ea195172657d32e65107a1fb9a24e4d9754
