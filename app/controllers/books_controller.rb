@@ -1,26 +1,10 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_admin, only: [:new, :create, :edit, :update, :destroy]
   # GET /books
   # GET /books.json
   def index
     @books = Book.all
-    if params[:search]
-      @books = Book.search(params[:search]).order("created_at DESC")
-    else
-      @books = Book.all.order('created_at DESC')
-    end
-  end
-
-  # GET /books
-  # GET /books.json
-  def indexForMembers
-    @books = Book.all
-    if params[:search]
-      @books = Book.search(params[:search]).order("created_at DESC")
-    else
-      @books = Book.all.order('created_at DESC')
-    end
   end
 
   # GET /books/1
@@ -28,35 +12,13 @@ class BooksController < ApplicationController
   def show
   end
 
-  # GET /books/new_user
+  # GET /books/new
   def new
     @book = Book.new
   end
 
   # GET /books/1/edit
   def edit
-  end
-
-  # POST /books/1/borrow
-  def borrow
-    @book = Book.find(params[:id])
-    @book.status = "Checked out"
-    @book.user_id = current_user
-    @book.borrower = current_user.name
-    @book.save
-
-    redirect_to indexForMembers_book_path
-  end
-
-  # POST /books/1/return
-  def return
-    @book = Book.find(params[:id])
-    @book.status = "Available"
-    @book.user_id = nil
-    @book.borrower = nil
-    @book.save
-
-    redirect_to current_user
   end
 
   # POST /books
@@ -92,10 +54,16 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book.destroy
-    respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
-      format.json { head :no_content }
+    if @book.status == "Checked out"
+      respond_to do |format|
+        format.html { redirect_to books_url, notice: 'Book has been checked out.' }
+      end
+    else
+      @book.destroy
+      respond_to do |format|
+        format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -107,6 +75,6 @@ class BooksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def book_params
-    params.require(:book).permit(:title, :isbn, :description, :authors, :status)
+    params.require(:book).permit(:isbn, :title, :desc, :author)
   end
 end

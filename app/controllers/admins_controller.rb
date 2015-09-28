@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_admin, only: [:edit, :update, :show]
+  before_action :verify_admin, only: [:edit, :update]
 
   # GET /admins
   # GET /admins.json
@@ -10,15 +11,17 @@ class AdminsController < ApplicationController
   # GET /admins/1
   # GET /admins/1.json
   def show
+    @admin = Admin.find(params[:id])
   end
 
-  # GET /admins/new_user
+  # GET /admins/new
   def new
     @admin = Admin.new
   end
 
   # GET /admins/1/edit
   def edit
+    @admin = Admin.find(params[:id])
   end
 
   # POST /admins
@@ -54,6 +57,7 @@ class AdminsController < ApplicationController
   # DELETE /admins/1
   # DELETE /admins/1.json
   def destroy
+    @user = User.find(params[:id])
     @admin.destroy
     respond_to do |format|
       format.html { redirect_to admins_url, notice: 'Admin was successfully destroyed.' }
@@ -62,13 +66,10 @@ class AdminsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_admin
-    @admin = Admin.find(params[:id])
-  end
+
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_params
-    params.require(:admin).permit(:email, :name, :password, :status, :profile)
+    params.require(:admin).permit(:name, :email, :password, :password_confirmation)
   end
 end

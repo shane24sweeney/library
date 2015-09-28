@@ -1,12 +1,21 @@
 class Book < ActiveRecord::Base
-  belongs_to :user
+  has_many :checkouts, dependent: :destroy
+  has_many :users, through: :checkouts, dependent: :destroy
 
-  def status_name
-    status ? "Available" : "Checked Out"
-  end
+  #valdations
+  validates :isbn, presence: true, uniqueness: true
+  validates :title, presence: true
+  validates :author, presence: true
 
   def self.search(search)
-    where("title LIKE ? OR description LIKE ? OR isbn LIKE ? OR authors LIKE ? OR status LIKE ? OR borrower LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    if search
+      where(["title LIKE ?", "%#{search}%"])||
+          where(["desc LIKE ?", "%#{search}%"]) ||
+          where(["isbn LIKE ?", "%#{search}%"]) ||
+          where(["author LIKE ?", "%#{search}%"]) ||
+          where(["status LIKE ?", "%#{search}%"])
+    else
+      all
+    end
   end
-
 end

@@ -6,13 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Book.create(:isbn "51242", :title "title1", :description "desc1", :authors "auth1")
-Book.create(:isbn "51243", :title "title2", :description "desc2", :authors "auth2")
-Book.create(:isbn "51244", :title "title3", :description "desc3", :authors "auth3")
-Book.create(:isbn "51245", :title "title4", :description "desc4", :authors "auth4")
-Book.create(:isbn "51246", :title "title5", :description "desc5", :authors "auth5")
-Book.create(:isbn "51247", :title "title6", :description "desc6", :authors "auth6")
-Book.create(:isbn "51248", :title "title7", :description "desc7", :authors "auth7")
+(1..50).each do |x|
+  Book.create!(isbn: x+100, title: "Book No.#{x}", desc: "description #{x}", author: "Author #{x}")
+end
 
-Admin.create(:email "admin1@gmail.com", :name "Admin1", :password "password")
-Admin.create(:email "admin2@gmail.com", :name "Admin2", :password "password")
+Admin.create!(name: "Moharnab Saikia", password: "password", password_confirmation: "password", email: "msaikia@ncsu.edu")
+
+Admin.create!(name: "Shane Sweene", password: "password", password_confirmation: "password", email: "admin@ncsu.edu")
+
+Admin.create!(name: "Shane Sweene", password: "password", password_confirmation: "password", email: "ssweene2@ncsu.edu")
+
+User.create!(name: "Kellie Jos", password: "password", password_confirmation: "password", email: "kmjos@ncsu.edu")

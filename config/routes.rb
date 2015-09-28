@@ -1,33 +1,28 @@
 Rails.application.routes.draw do
-  get 'welcome/home'
+  root 'welcome#index'
 
-  get 'sessions/new_user'
+  #Session Links
 
-  get 'sessions/create_user'
+  get 'login/user' => 'sessions#new_user', as: :login_user
+  get 'login/admin' => 'sessions#new_admin', as: :login_admin
+  post 'login/user' => 'sessions#create_user'
+  post 'login/admin' => 'sessions#create_admin'
+  delete 'logout/user' => 'sessions#destroy_user', as: :logout_user
+  delete 'logout/admin' => 'sessions#destroy_admin', as: :logout_admin
+  get 'signup' => 'users#new'
 
-  get 'sessions/new_admin'
 
-  get 'sessions/create_admin'
-
-  get 'sessions/destroy'
-
-  get 'sessions/new_user'
-  get 'login_user' => 'sessions#new_user'
-  post 'login_user' => 'sessions#create_user'
-  get 'login_admin' => 'sessions#new_admin'
-  post 'login_admin' => 'sessions#create_admin'
-  delete 'logout' => 'sessions#destroy'
-  root 'welcome#home'
+  get '/checkout/book/:id' => 'checkouts#show_book', as: :checkout_book
+  get '/checkout/user/:id' => 'checkouts#show_user', as: :checkout_user
+  get '/checkout/create/book/:id' => 'checkouts#create', as: :create_checkout
+  get '/checkout/update/book/:id' => 'checkouts#update', as: :update_checkout
+  post '/checkout/create/book/:id' => 'checkouts#create_admin', as: :create_admin_checkout
+  get '/recommended' => 'recommendations#user_recommendation', as: :recommended
 
   resources :users
   resources :admins
-  resources :books do
-    member do
-      get :borrow
-      get :return
-      get :indexForMembers
-    end
-  end
+  resources :books
+  resources :recommendations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,26 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @admin.email %>
-</p>
-
-<p>
   <strong>Name:</strong>
   <%= @admin.name %>
 </p>
 
-<% if current_admin.name == @admin.name %>
 <p>
-  <strong>Password:</strong>
-  <%= @admin.password %>
+  <strong>Email:</strong>
+  <%= @admin.email %>
 </p>
-<%end%>
-
-<%= link_to 'Add User ', new_user_path, :class => 'btn' %>
-<%= link_to 'Add Book ', new_book_path, :class => 'btn' %>
-<%= link_to 'Manage Users ', users_path, :class => 'btn' %>
-<%= link_to 'Manage Books', books_path, :class => 'btn' %>
 
 <%= link_to 'Edit', edit_admin_path(@admin) %> |
 <%= link_to 'Back', admins_path %>
