@@ -6,14 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-(1..50).each do |x|
-  Book.create!(isbn: x+100, title: "Book No.#{x}", desc: "description #{x}", author: "Author #{x}")
+(1..10).each do |x|
+  Book.create!(isbn: x+107678, title: "Book No.#{x}", desc: "description #{x}", author: "Author #{x}")
+end
+(1..10).each do |x|
+  Book.create!(isbn: x+107678, title: "Test Book#{x}", desc: "description #{x}", author: "Author #{x}, Author #{x+1}")
 end
 
 Admin.create!(name: "Moharnab Saikia", password: "password", password_confirmation: "password", email: "msaikia@ncsu.edu")
 
-Admin.create!(name: "Shane Sweene", password: "password", password_confirmation: "password", email: "admin@ncsu.edu")
+Admin.create!(name: "Shane Sweeney", password: "password", password_confirmation: "password", email: "admin@ncsu.edu")
 
-Admin.create!(name: "Shane Sweene", password: "password", password_confirmation: "password", email: "ssweene2@ncsu.edu")
+Admin.create!(name: "Shane Sweeney", password: "password", password_confirmation: "password", email: "ssweene2@ncsu.edu")
+Admin.create!(name: "Kellie Jos", password: "password", password_confirmation: "password", email: "kmjos@ncsu.edu")
+
 
 User.create!(name: "Kellie Jos", password: "password", password_confirmation: "password", email: "kmjos@ncsu.edu")
