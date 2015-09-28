@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Isbn:</strong>
+  <%= @book.isbn %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @book.desc %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @book.status %>
+<p>
+<hr>
+
+<h3>Checkout History</h3>
+<% if !@book.checkouts.first.nil? %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>User Name</th>
+        <th>E-mail</th>
+        <th>Checkout Date</th>
+        <th>Return Date</th>
+      </tr>
+      </thead>
+
+      <% @book.checkouts.order("created_at DESC").each do |x| %>
+          <tr>
+            <td><%= x.user.name %>
+            <td><%= x.user.email %>
+            <td><%= x.user.created_at %>
+            <td><%= x.user.updated_at %>
+
+          </tr>
+      <% end %>
+    </table>
+<% else %>
+    <h4>No checkout history available.</h4>
+<% end %>
+<%= link_to "Back", books_path %>
+
+

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<% if admin_logged_in? %>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @user.name %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
+
+<% end %>
+
+<hr>
+
+<h3>Checkout History of User</h3>
+
+<% if !@user.checkouts.first.nil? %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Checkout Date</th>
+        <th>Return Date</th>
+      </tr>
+      </thead>
+
+      <% @user.checkouts.order("created_at DESC").each do |x| %>
+          <tr>
+            <td><%= x.book.isbn %>
+            <td><%= x.book.title %>
+            <td><%= x.book.author %>
+            <td><%= x.user.created_at %>
+              <% if x.updated_at.nil? %>
+                <td><%= link_to "Return Book", update_checkout_path(x.book) %></td>
+            <% else %>
+                <td><%= x.updated_at %></td>
+            <% end %>
+          </tr>
+      <% end %>
+    </table>
+<% else %>
+    <h4>No checkout history available.</h4>
+<% end %>
+<%= link_to "Back", users_path %>
