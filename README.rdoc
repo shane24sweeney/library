@@ -1,28 +1,33 @@
 == README
+Ruby On Rails Program 1
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Team Members:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Kellie Jos
+Moharnab Saikia
+Shane Sweeney
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+LibSys
+This is a library web application.
+There is two types of users in the system which include both an Admin and User.
+
+Ruby 2.2.1 is the framework which the application is build on.
+The database used is SQLITE.
+Added Rspec and Capybara for testing  
+Bootstrap css added for nice look and feel.
+Main page contains the Welcome screen which includes creating an account, home, login in as user and login in as admin.
+
+Tests:
+Books:
+validates :email, presence: true,  
+validates :password, presence: true,  
+validates :id, presence: true  
+validates :name, presence: true  
+validates :status, presence: true  
+Adding Test Cases for RSPEC. Added admin, user and book test cases
+
+The following are admins email addresses with the associated password that can be used to interact with the library application:
+
+admin@ncsu.edu
+password
