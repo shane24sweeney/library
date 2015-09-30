@@ -1,41 +1,70 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Isbn:</strong>
+  <%= @book.isbn %>
+</p>
+
+<p>
   <strong>Title:</strong>
   <%= @book.title %>
 </p>
 
 <p>
-  <strong>ISBN:</strong>
-  <%= @book.isbn %>
-</p>
-
-<p>
   <strong>Description:</strong>
-  <%= @book.description %>
+  <%= @book.desc %>
 </p>
 
 <p>
-  <strong>Authors:</strong>
-  <%= @book.authors %>
+  <strong>Author:</strong>
+  <%= @book.author %>
 </p>
 
 <p>
   <strong>Status:</strong>
   <%= @book.status %>
-</p>
+  <% if @book.status == "Checked out" && admin_logged_in? %>
 
-<p>
-  <% if current_admin.present? && @book.borrower.present?%>
-      <strong>Borrower:</strong>
-      <%= @book.borrower %>
-  <%end%>
-</p>
+      : <%= @book.checkouts.order("created_at DESC").first.user.email unless @book.checkouts.order("created_at DESC").first.nil? %>
+      </p>
 
-<%if @book.status == "Available" && current_user.present?%>
-    <%= link_to "Check Out Book", borrow_book_path(@book), :class => 'btn' %> |
-<%end%>
-<% if current_admin.present? %>
-    <%= link_to 'Edit', edit_book_path(@book) %> |
-<%end%>
-<%= link_to 'Back', books_path %>
+  <% end %>
+  <hr>
+  <% if admin_logged_in? %>
+      <p><%= link_to "See Checkout history", checkout_book_path(@book) %><p/>
+  <% end %>
+
+  <% if user_logged_in? %>
+      <% if @book.status == "In Library" %>
+          <br/>
+          <%= link_to "Checkout", create_checkout_path(@book) %>
+      <% else
+           !(@book.checkouts.nil?) %>
+          <% if @book.checkouts.order("created_at DESC").first.user == current_user %>
+              <br/>
+              <%= link_to "Return", update_checkout_path(@book), data: {confirm: 'Are you sure you want to return the book?'} %>
+          <% end %>
+      <% end %>
+  <% elsif admin_logged_in? %>
+      <% if @book.status == "Available" %>
+          <%= form_for :user, url: create_admin_checkout_path(@book) do |f| %>
+              <%= f.label "Enter library member EmailID: " %>
+              <%= f.text_field :email %><br/>
+              <%= f.submit "Checkout Book" %>
+          <% end %>
+      <% else
+           !(@book.checkouts == nil) %>
+          <%= link_to "Return Book", update_checkout_path(@book) %><br/>
+      <% end %>
+      <br/>
+      <%= link_to 'Edit', edit_book_path(@book) %>&nbsp;&nbsp
+      <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: 'Are you sure you want to delete the book?'} %>
+  <% end %>
+
+  <br/><br/>
+  <%= link_to "View all books", books_path %>
+  </p>
+  <% if admin_logged_in? %>
+      <%= link_to 'Edit', edit_book_path(@book) %> |
+  <% end %>
+  <%= link_to 'Back', books_path %>

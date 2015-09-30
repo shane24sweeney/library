@@ -1,18 +1,20 @@
-<h1>User Login</h1>
+<h2>User Login Form</h2><br/>
+<%= form_for(:session, url: login_user_path) do |f| %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_user_path) do |f| %>
 
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br>
+      <%= f.text_field :password %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Log In!" %>
+    </div>
 
-        <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
-
-    <p>Not registered? <%= link_to "Sign up!", new_user_path %></p>
-  </div>
-</div>
+<% end %>
+<div class="field"><%= link_to "Back", root_path %></div>
+<div class="field"><%= link_to "Sign Up", new_user_path %></div>

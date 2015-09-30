@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3162923429">
-    <data-source source="LOCAL" name="Rails RubyOnRailsProgram1-: development" uuid="c34a4a03-3c09-4c79-874d-dd7c56b19825">
+  <component name="DataSourceManagerImpl" format="xml" hash="1392493308">
+    <data-source source="LOCAL" name="Rails MoharnabLibrary: development" uuid="8bd31496-bb85-4cb0-80fe-9d59d0df7dab">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
-      <libraries />
+      <jdbc-url>jdbc:sqlite:C:\Users\moharnab\Desktop\Test\MoharnabLibrary\db\development.sqlite3</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/xerial-sqlite-license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/sqlite-jdbc-3.8.9.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

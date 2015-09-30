@@ -1,18 +1,20 @@
-<h1>Admin Login</h1>
+<h2> Log in </h2><br/>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_admin_path) do |f| %>
 
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
+<%= form_for(:session, url: login_admin_path) do |f| %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
 
-        <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br>
+      <%= f.text_field :password %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Log In!" %>
+    </div>
 
-    <p>Not registered? <%= link_to "Sign up!", new_user_path %></p>
-  </div>
-</div>
+<% end %>
+<div class="field"><%= link_to "Back", root_path %></div>

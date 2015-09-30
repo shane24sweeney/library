@@ -1,0 +1,40 @@
+<h1>Recommendations</h1>
+
+<% if @recommendations.present? %>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Author</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @recommendations.order("created_at DESC").each do |r| %>
+          <tr>
+            <% if Book.find_by(isbn: r.isbn).nil? %>
+                <td><%= r.isbn %></td>
+            <% else %>
+                <td><%= link_to r.isbn, book_path(Book.find_by(isbn: r.isbn)) %></td>
+            <% end %>
+            <td><%= r.title %></td>
+            <td><%= r.desc %></td>
+            <td><%= r.author %></td>
+            <td><%= r.status %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% if r.status == "Under Review" %>
+        <div class="field"><%= link_to 'Accept', edit_recommendation_path(r) %></div>
+        <div class="field"><%= link_to 'Decline', recommendation_path(r), method: :delete, data: {confirm: 'Are you sure?'} %>
+    <% end %>
+
+<% else %>
+    <h3>No Recommendations</h3>
+<% end %>
+<%= link_to 'New Book', new_book_path %>

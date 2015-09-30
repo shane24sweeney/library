@@ -1,45 +1,65 @@
 module SessionsHelper
-  # Logs in the given user.
-  def log_in_user(user)
+  #user specific methods
+  def user_login(user)
     session[:user_id] = user.id
-    session[:user_type] = 'user'
   end
 
-  def log_in_admin(admin)
-    session[:user_id] = admin.id
-    session[:user_type] = 'admin'
-  end
-
-  #returns the current logged in user
   def current_user
-    if @current_user.nil?
-      @current_user = User.find_by(id: session[:user_id])
-    else
-      @current_user
-    end
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
-  def current_admin
-    if @current_admin.nil?
-      @current_admin = Admin.find_by(id: session[:user_id])
-    else
-      @current_admin
-    end
-  end
-
-  def logged_in_user?
+  def user_logged_in?
     !current_user.nil?
   end
 
-  def logged_in_admin?
+  def logout_user
+    session.delete(:user_id)
+    @current_user = nil
+  end
+
+  def logged_in_user
+    unless user_logged_in?
+      flash[:error] = "You are not logged in.Try again"
+      redirect_to login_user_url
+    end
+  end
+
+  def verify_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to root_path
+    end
+  end
+
+
+  def admin_login(admin)
+    session[:admin_id] = admin.id
+  end
+
+  def current_admin
+    @current_admin ||= Admin.find_by(id: session[:admin_id])
+  end
+
+  def admin_logged_in?
     !current_admin.nil?
   end
 
-  def log_out
-    session.delete(:user_id)
-    session.delete(:user_type)
-    @current_user = nil
+  def logout_admin
+    session.delete(:admin_id)
     @current_admin = nil
   end
 
+
+  def logged_in_admin
+    unless admin_logged_in?
+      flash[:error] = "You must be logged in as an admin to perform this action. Please log in and try again"
+      redirect_to login_admin_url
+    end
+  end
+
+  def verify_admin
+    @admin = Admin.find(params[:id])
+    redirect_to root_path unless @admin == current_admin
+  end
 end
+
