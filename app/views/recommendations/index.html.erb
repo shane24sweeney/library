@@ -33,10 +33,6 @@
       <% end %>
       </tbody>
     </table>
-    <% if r.status == "Under Review" %>
-        <div class="field"><%= link_to 'Accept', edit_recommendation_path(r) %></div>
-        <div class="field"><%= link_to 'Decline', recommendation_path(r), method: :delete, data: {confirm: 'Are you sure?'} %>
-    <% end %>
 
 <% else %>
     <h3>No Recommendations</h3>

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <!--Search Books-->
-<%= form_tag books_path, :method => 'get' do %>
-    <%= text_field_tag :search, params[:search] %>
+<%= form_tag(books_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Books" %>
     <%= submit_tag "Search" %>
 <% end %>
 
@@ -27,7 +27,7 @@
   </thead>
 
   <tbody>
-  <% @books.order("created_at DESC").each do |book| %>
+      <% @books.each do |book| %>
       <tr>
         <td><%= book.isbn %></td>
         <td><%= book.title %></td>
@@ -40,7 +40,7 @@
             <% end %>
         <% end %>
         <% if (book.status == "Checked out") %>
-            <% if (!current_user.books.find_by_id(book.id).nil?) %>
+            <% if (current_user && !current_user.books.find_by_id(book.id).nil?) %>
                 <td><%= link_to 'Return', update_checkout_path(book), data: {confirm: 'Return Book?'} %>
                 </td>
             <% else %>
@@ -49,7 +49,9 @@
         <% end %>
         <% if admin_logged_in? %>
             <td><%= link_to 'Edit', edit_book_path(book) %></td>
-            <td><%= link_to 'Destroy', books_path(book), method: :delete, data: {confirm: 'Are you sure you delete the book?'} %></td>
+            <% if (book.status != "Checked out") %>
+                <td><%= link_to 'Destroy', books_path(book), method: :delete, data: {confirm: 'Are you sure you delete the book?'} %></td>
+            <% end %>
         <% end %>
       </tr>
       </tbody>
