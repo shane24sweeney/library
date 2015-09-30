@@ -34,7 +34,9 @@
             <td><%= link_to 'Show', book %></td>
             <% if current_admin.present? %>
                 <td><%= link_to 'Edit', edit_book_path(book) %></td>
-                <td><%= link_to 'Destroy', book, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                <% if book.status != "Checked out" %>
+                    <td><%= link_to 'Destroy', book, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                <%end%>
             <% end %>
           </tr>
       <% end %>
