@@ -42,8 +42,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy_admin
-    logout_admin
-    redirect_to root_url
+  redirect_to 'admin/show' , :id => session[:admin_id]
+  redirect_to user_url(:session[:admin_id])
   end
 end
 
