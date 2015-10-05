@@ -1,4 +1,3 @@
-== README
 Ruby On Rails Program 1
 
 Team Members:
@@ -7,27 +6,141 @@ Kellie Jos
 Moharnab Saikia
 Shane Sweeney
 
+# Overview
+Library Web Application
+Deployment: [Heroku URL](https://lit-gorge-4552.herokuapp.com/)
+  logout_admin
+    redirect_to root_url
+# How to Use LibSys:
 
-LibSys
-This is a library web application.
-There is two types of users in the system which include both an Admin and User.
+Preconfiged Admin: email: 	admin@ncsu.edu
+Admin: password:		password
 
-Ruby 2.2.1 is the framework which the application is build on.
-The database used is SQLITE.
-Added Rspec and Capybara for testing  
-Bootstrap css added for nice look and feel.
-Main page contains the Welcome screen which includes creating an account, home, login in as user and login in as admin.
+Download from Github at: github.com/ssweene2/RubyOnRailsProgram1-
+Using Ubuntu Terminal navigate to the following directory and run rails server: /trunk/rails server
+if the following is encountered: 
+Could not find pg-0.18.3 in any of the sources
+Run `bundle install` to install missing gems.
+please run the following command:  bundle install --without production
 
-Tests:
-Books:
-validates :email, presence: true,  
-validates :password, presence: true,  
-validates :id, presence: true  
-validates :name, presence: true  
-validates :status, presence: true  
-Adding Test Cases for RSPEC. Added admin, user and book test cases
+Then rails server again.
 
-The following are admins email addresses with the associated password that can be used to interact with the library application:
+### Admins
+#### Log in as admin: 
+Navigate to http://localhost:3000/ after rails server has been executed.
+Select Admin Login from the right hand side of the page.
+Enter the following for each field:
+Email: 		admin@ncsu.edu 
+Password:	password
+Select login.
 
-admin@ncsu.edu
-password
+### Admins
+#### Edit admin profile: 
+Follow steps to log in as admin above.
+Select Admins
+Select Show (on user with email: admin@ncsu.edu)
+Select Edit
+Edit Name value and select Update Admin.
+
+### Admins
+#### Logout
+After recieving the update message from updating the admin profile above, select Logout.
+
+### Admins
+#### Creating other admins
+Log in as admin as described above. If you encounter issues logging in with admin simply perform a refresh on the web page.
+Select Admins
+Select New Admin
+Fill out the fields for Name, Email, Password and Password confirmation.
+Then select Create Admin.
+For example:
+Name: sean
+Email: james@yahoo.com
+Password: 1234
+Password confirmation: 1234
+Select Create Admin
+(Observe you get an error saying password is too short)
+Reenter 12345678 for Password and Password confirmation. Select Create Admin.
+ 
+### Admins
+#### List other admins
+Select admins after successfully creating above admin.
+
+### Admins
+#### View details of admins except password
+After listing the admins above, select Show on admins without email as admin@ncsu.edu
+password will not be shown other than name and email.
+
+### Admins
+#### Delete other admins and preconfigured
+After listing the admins above. Select admins other than email of admin@ncsu.edu. (Here admin@ncsu.edu is both 
+the admin and the preconfigured admin.)
+Select Destroy
+Select OK (Are you sure)
+
+### Admins
+#### Add books
+Login as Admin as above.
+Select Books
+Scroll down and select New Book
+Enter Isbn, Title, Desc and Author and select Create Book.
+For example:
+Isbn: 	12345678
+Title: 	Rails
+Desc: 	Great Book
+Author: Rails Genius
+Create Book
+
+Select Back and Verify book has been created.
+
+### Admins
+#### View list of all books
+Login as Admin as above.
+Select Books
+
+### Admins
+#### Details of books
+Login as Admin as above.
+Select Books
+Select edit on any book and select show
+
+### Admins
+#### Edit Details of books
+Login as Admin as above.
+Select Books
+Select Edit on any book and add 1 to Isbn field and select update book
+
+### Admins
+#### Change Status of books
+Login as Admin as above.
+Select Books with status In Library
+Select Edit on the book
+Select Show
+Select Edit
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
