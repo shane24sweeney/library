@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
     admin = Admin.find_by(email: params[:session][:email].downcase)
     if admin && admin.authenticate(params[:session][:password])
       admin_login admin
+      UserMailer.book_available_notification.deliver
       flash[:success] = "Welcome Admin!"
       redirect_to root_path
     else
@@ -42,8 +43,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy_admin
-  redirect_to 'admin/show' , :id => session[:admin_id]
-  redirect_to user_url(:session[:admin_id])
+  logout_admin
+    redirect_to root_url
   end
 end
 
