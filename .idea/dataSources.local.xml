@@ -2,5 +2,6 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Rails MoharnabLibrary: development" uuid="8bd31496-bb85-4cb0-80fe-9d59d0df7dab" />
+    <data-source name="Rails MoharnabLibrary: test" uuid="619ded59-71eb-4efb-8db4-e55b967b4762" />
   </component>
 </project>

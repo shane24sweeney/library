@@ -68,4 +68,9 @@
       <index name="index_users_on_email" unique="true" columns="email"/>
     </table>
   </data-source>
+  <data-source name="Rails MoharnabLibrary: test" uuid="619ded59-71eb-4efb-8db4-e55b967b4762">
+    <database-info product="SQLite" version="3.8.9" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
+  </data-source>
 </component>

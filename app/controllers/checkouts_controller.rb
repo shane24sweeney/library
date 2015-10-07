@@ -40,10 +40,9 @@ class CheckoutsController < ApplicationController
     @user = User.find_by(email: params[:user][:email])
     respond_to do |format|
       if @user.nil?
-        format.html { redirect_to @book, notice: 'invalid user!' }
-        return
-      end
-      if @book.checkouts.create(user: @user, created_at: Time.now)
+        format.html { redirect_to @book, notice: 'Invalid user!' }
+
+      elsif @book.checkouts.create(user: @user, created_at: Time.now)
         @book.update(status: "Checked out")
         format.html { redirect_to @book, notice: 'Checked out successfully!!' }
       else
@@ -57,7 +56,7 @@ class CheckoutsController < ApplicationController
     respond_to do |format|
       if @book.checkouts.last.update_attributes(updated_at: Time.now)
         @book.update(status: "In Library")
-        format.html { redirect_to @book, notice: 'Checked out successfully!!' }
+        format.html { redirect_to @book, notice: 'Returned successfully!!' }
       else
         format.html { render @book, notice: 'Return Failed!!' }
       end

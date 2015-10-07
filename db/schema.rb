@@ -14,23 +14,23 @@
 ActiveRecord::Schema.define(version: 20150928015239) do
 
   create_table "admins", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
 
   create_table "books", force: :cascade do |t|
-    t.string "isbn"
-    t.string "title"
-    t.string "desc"
-    t.string "author"
-    t.string "status", default: "In Library"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "isbn"
+    t.string   "title"
+    t.string   "desc"
+    t.string   "author"
+    t.string   "status",     default: "In Library"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_index "books", ["isbn"], name: "index_books_on_isbn", unique: true
@@ -38,31 +38,31 @@ ActiveRecord::Schema.define(version: 20150928015239) do
   create_table "checkouts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "book_id"
+    t.integer  "user_id"
+    t.integer  "book_id"
   end
 
   add_index "checkouts", ["book_id"], name: "index_checkouts_on_book_id"
   add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id"
 
   create_table "recommendations", force: :cascade do |t|
-    t.string "isbn"
-    t.string "title"
-    t.string "desc"
-    t.string "author"
-    t.string "status", default: "Pending"
-    t.string "comment"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "isbn"
+    t.string   "title"
+    t.string   "desc"
+    t.string   "author"
+    t.string   "status",     default: "Pending"
+    t.string   "comment"
+    t.integer  "user_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
