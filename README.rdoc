@@ -111,13 +111,102 @@ Select Books
 Select Edit on any book and add 1 to Isbn field and select update book
 
 ### Admins
-#### Change Status of books
+#### Check out books for user
 Login as Admin as above.
 Select Books with status In Library
 Select Edit on the book
 Select Show
-Select Edit
+Enter user email address
+Select Check Out
 
+### Admins
+#### Return books for user
+Login as Admin as above.
+Select Books with status Checked Out
+Select Edit on the book
+Select Show
+Select Return Book
+
+### Admins
+#### View checkout history of book
+Login as Admin as above.
+Select Books
+Select Edit on a book
+Select Show
+Select See Checkout History
+
+### Admins
+#### View list of all users
+Login as Admin as above.
+Select Users
+
+### Admins
+#### View checkout history of user
+Login as Admin as above.
+Select Users
+Select Checkout History
+
+### Admins
+#### View Recommendations
+Login as Admin as above.
+Select Recommendations
+
+### Users
+#### Sign up as user: 
+Select Sign Up
+Enter the following for each field:
+Email: 		user@ncsu.edu
+Name: User
+Password:	password
+Select Sign Up.
+
+### Users
+#### Logout
+After user is created, select Logout.
+
+### Users
+#### Edit users profile: 
+Follow steps to log in as users above.
+Select user name
+Select Edit
+Edit Name value and select Update User.
+
+### Users
+#### Create new Recommendation: 
+Follow steps to log in as users above.
+Select user name
+Select New Recommendation
+Enter Isbn, Title, Desc and Author and select create recommendation
+
+### Users
+#### View Recommendations: 
+Follow steps to log in as users above.
+Select user name
+Select Recommendations
+
+### Users
+#### View list of all books
+Login as User as above.
+Select Books
+
+### Users
+#### Checkout book
+Login as User as above.
+Select Books
+Select Check Out on a book
+
+### Users
+#### Return book
+Login as User as above.
+Select Books
+Search for books with status Checked Out
+Select Return on a book
+
+### Users
+#### View Checkout History
+Login as User as above.
+Select user name
+Select Checkout History
 
 
 
