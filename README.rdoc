@@ -62,4 +62,4 @@ Login as Admin as above. Select Users
 ##Checkout book: Login as User as above. Select Books Select Check Out on a book
 ##Return book: Login as User as above. Select Books Search for books with status Checked Out Select Return on a book
 ##View Checkout History: Login as User as above. Select user name Select Checkout History
-##Create Notification:  Go to book listings.Then select a book that has been checked out.Click create notification.You'll get an email when the book is returned.
+<br>Create Notification:  Go to book listings.Then select a book that has been checked out.Click create notification.You'll get an email when the book is returned.
