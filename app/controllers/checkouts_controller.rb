@@ -55,6 +55,12 @@ class CheckoutsController < ApplicationController
     @book = Book.find(params[:id])
     respond_to do |format|
       if @book.checkouts.last.update_attributes(updated_at: Time.now)
+        if !@book.notifications.nil?
+          @book.notifications.each do |x|
+            UserMailer.book_available_notification(x.user, @book).deliver
+            x.destroy
+          end
+        end
         @book.update(status: "In Library")
         format.html { redirect_to @book, notice: 'Returned successfully!!' }
       else

@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
   has_many :checkouts, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_many :users, through: :checkouts, dependent: :destroy
 
   #valdations

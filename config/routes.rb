@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notifications/create'
+
   root 'welcome#index'
 
   #Session Links
@@ -7,14 +9,20 @@ Rails.application.routes.draw do
   get 'login/admin' => 'sessions#new_admin', as: :login_admin
   post 'login/user' => 'sessions#create_user'
   post 'login/admin' => 'sessions#create_admin'
-  delete 'logout/user' => 'sessions#destroy_user', as: :logout_user
-  delete 'logout/admin' => 'sessions#destroy_admin', as: :logout_admin
+  get 'logout/user' => 'sessions#destroy_user', as: :logout_user
+  get 'logout/admin' => 'sessions#destroy_admin', as: :logout_admin
   get 'signup' => 'users#new'
+
+
+  get 'destroy/book/:id' => 'books#destroy', as: :destroy_book
+  get 'destroy/user/:id' => 'users#destroy', as: :destroy_user
+  get 'destroy/admin/:id' => 'admins#destroy', as: :destroy_admin
 
 
   get '/checkout/book/:id' => 'checkouts#show_book', as: :checkout_book
   get '/checkout/user/:id' => 'checkouts#show_user', as: :checkout_user
   get '/checkout/create/book/:id' => 'checkouts#create', as: :create_checkout
+  get '/notification/create/book/:id' => 'notifications#create', as: :create_notification
   get '/checkout/update/book/:id' => 'checkouts#update', as: :update_checkout
   post '/checkout/create/book/:id' => 'checkouts#create_admin', as: :create_admin_checkout
   get '/recommended' => 'recommendations#user_recommendation', as: :recommended

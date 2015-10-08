@@ -39,7 +39,7 @@ class RecommendationsController < ApplicationController
     respond_to do |format|
       if @recommendation.update_attributes(recommendation_params)
         book = Book.new(isbn: @recommendation.isbn, title: @recommendation.title,
-                        author: @recommendation.author, description: @recommendation.description)
+                        author: @recommendation.author, description: @recommendation.desc)
         if book.save
           format.html { redirect_to recommendations_path, notice: "Recommended Successfully!" }
         else

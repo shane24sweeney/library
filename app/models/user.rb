@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 6, maximum: 25}, allow_nil: true
 
   has_many :checkouts, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_many :books, through: :checkouts, dependent: :destroy
+  has_many :books, through: :notifications, dependent: :destroy
   has_many :recommendations, dependent: :destroy
 
 end

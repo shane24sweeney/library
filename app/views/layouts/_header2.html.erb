@@ -1,0 +1,33 @@
+<header class="navbar navbar-fixed-top">
+  <div class="container">
+    <%= link_to "LibSys", '/', id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+
+
+        <% if user_logged_in? %>
+            <li><%= link_to "Logged in as #{current_user.name}", user_path(current_user.id) %></li>
+            <li><%= link_to "Logout", logout_user_path, method: :delete, :class => 'navbar-link' %></li>
+            <li><%= link_to "Books",   books_path %></li>
+
+
+        <% elsif admin_logged_in? %>
+
+            <li><%= link_to "Logged in as #{current_admin.name}", admin_path(current_admin.id) %></li>
+            <li><%= link_to "Books",   books_path %></li>
+           <li><%= link_to 'Users', users_path, :class => 'navbar-link' %></li>
+            <li><%= link_to 'Admins', admins_path, :class => 'navbar-link' %></li>
+            <li><%= link_to 'Recommendations', recommendations_path, :class => 'navbar-link' %></li>
+            <li><%= link_to "Logout", logout_admin_path, method: :delete, :class => 'navbar-link' %></li>
+
+
+        <% else %>
+            <li><%= link_to "Books",   books_path %></li>
+            <li><%= link_to "Sign up", new_user_path, :class => 'navbar-link' %></li>
+            <li><%= link_to "User Login", login_user_path, :class => 'navbar-link' %></li>
+            <li></li><%= link_to "Admin Login", login_admin_path, :class => 'navbar-link' %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

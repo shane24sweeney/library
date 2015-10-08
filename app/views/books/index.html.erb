@@ -52,7 +52,7 @@
         <% if admin_logged_in? %>
             <td><%= link_to 'Edit', edit_book_path(book) %></td>
             <% if (book.status != "Checked out") %>
-                <td><%= link_to 'Destroy', book_path(book), method: :delete, data: {confirm: 'Are you sure you delete the book?'} %></td>
+                <td><%= link_to 'Destroy', destroy_book_path(book), data: {confirm: 'Are you sure you delete the book?'} %></td>
             <% end %>
         <% end %>
       </tr>
