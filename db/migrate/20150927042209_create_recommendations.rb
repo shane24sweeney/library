@@ -4,7 +4,7 @@ class CreateRecommendations < ActiveRecord::Migration
 
       t.string :isbn
       t.string :title
-      t.string :desc
+      t.string :description
       t.string :author
       t.string :status, :default => "Pending"
       t.string :comment

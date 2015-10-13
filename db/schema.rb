@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20151007194532) do
   create_table "books", force: :cascade do |t|
     t.string   "isbn"
     t.string   "title"
-    t.string   "desc"
+    t.string   "description"
     t.string   "author"
     t.string   "status",     default: "In Library"
     t.datetime "created_at",                        null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20151007194532) do
   create_table "recommendations", force: :cascade do |t|
     t.string   "isbn"
     t.string   "title"
-    t.string   "desc"
+    t.string   "description"
     t.string   "author"
     t.string   "status",     default: "Pending"
     t.string   "comment"

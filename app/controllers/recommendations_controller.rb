@@ -39,7 +39,7 @@ class RecommendationsController < ApplicationController
     respond_to do |format|
       if @recommendation.update_attributes(recommendation_params)
         book = Book.new(isbn: @recommendation.isbn, title: @recommendation.title,
-                        author: @recommendation.author, description: @recommendation.desc)
+                        author: @recommendation.author, description: @recommendation.description)
         if book.save
           format.html { redirect_to recommendations_path, notice: "Recommended Successfully!" }
         else
@@ -71,6 +71,6 @@ class RecommendationsController < ApplicationController
 
   private
   def recommendation_params
-    params.require(:recommendation).permit(:isbn, :title, :desc, :author, :status)
+    params.require(:recommendation).permit(:isbn, :title, :description, :author, :status)
   end
 end

@@ -3,7 +3,7 @@ class CreateBooks < ActiveRecord::Migration
     create_table :books do |t|
       t.string :isbn
       t.string :title
-      t.string :desc
+      t.string :description
       t.string :author
       t.string :status, default: "In Library"
       t.timestamps null: false

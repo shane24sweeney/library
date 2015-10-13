@@ -22,7 +22,7 @@
                 <td><%= link_to r.isbn, book_path(Book.find_by(isbn: r.isbn)) %></td>
             <% end %>
             <td><%= r.title %></td>
-            <td><%= r.desc %></td>
+            <td><%= r.description %></td>
             <td><%= r.author %></td>
             <td><%= r.status %></td>
             <% if r.status == "Pending" %>

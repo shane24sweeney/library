@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 (1..10).each do |x|
-  Book.create!(isbn: x+107555, title: "Book No.#{x}", desc: "description #{x}", author: "Author #{x}")
+  Book.create!(isbn: x+107555, title: "Book No.#{x}", description: "description #{x}", author: "Author #{x}")
 end
 
 Admin.create!(name: "Moharnab Saikia", password: "password", password_confirmation: "password", email: "msaikia@ncsu.edu")
