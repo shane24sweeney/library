@@ -11,8 +11,7 @@ class Book < ActiveRecord::Base
   def self.search(search)
     if search
       search = search.downcase
-      where(["isbn like ? or author like ? or
-description like ? or title like ? or status like ?", "%#{search}%","%#{search}%","%#{search}%","%#{search}%","%#{search}%"])
+      where("lower(title) like :search OR isbn = :search2 OR lower(author) like :search OR lower(desc) like :search OR lower(status) = :search2",search2: "#{search}",search: "%#{search}%")
     else
       all
     end

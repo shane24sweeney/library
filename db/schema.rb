@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20151007194532) do
     t.string   "title"
     t.string   "description"
     t.string   "author"
-    t.string   "status",     default: "In Library"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "status",      default: "In Library"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   add_index "books", ["isbn"], name: "index_books_on_isbn", unique: true
@@ -60,11 +60,11 @@ ActiveRecord::Schema.define(version: 20151007194532) do
     t.string   "title"
     t.string   "description"
     t.string   "author"
-    t.string   "status",     default: "Pending"
+    t.string   "status",      default: "Pending"
     t.string   "comment"
     t.integer  "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "users", force: :cascade do |t|

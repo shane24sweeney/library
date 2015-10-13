@@ -21678,3 +21678,431 @@ ActionController::RoutingError (No route matches [GET] "/javascripts/defaults.js
   Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
   Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.1ms)
   Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (221.9ms)
+  [1m[36m (119.3ms)[0m  [1mCREATE TABLE "admins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (83.8ms)[0m  [1mCREATE UNIQUE INDEX "index_admins_on_email" ON "admins" ("email")[0m
+  [1m[35m (92.3ms)[0m  CREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "isbn" varchar, "title" varchar, "description" varchar, "author" varchar, "status" varchar DEFAULT 'In Library', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (88.0ms)[0m  [1mCREATE UNIQUE INDEX "index_books_on_isbn" ON "books" ("isbn")[0m
+  [1m[35m (89.8ms)[0m  CREATE TABLE "checkouts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer, "book_id" integer) 
+  [1m[36m (85.7ms)[0m  [1mCREATE  INDEX "index_checkouts_on_book_id" ON "checkouts" ("book_id")[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_checkouts_on_book_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_checkouts_on_book_id' AND type='index'
+
+  [1m[36m (100.5ms)[0m  [1mCREATE  INDEX "index_checkouts_on_user_id" ON "checkouts" ("user_id")[0m
+  [1m[35m (100.7ms)[0m  CREATE TABLE "notifications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer, "book_id" integer) 
+  [1m[36m (115.4ms)[0m  [1mCREATE  INDEX "index_notifications_on_book_id" ON "notifications" ("book_id")[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_notifications_on_book_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_notifications_on_book_id' AND type='index'
+
+  [1m[36m (143.5ms)[0m  [1mCREATE  INDEX "index_notifications_on_user_id" ON "notifications" ("user_id")[0m
+  [1m[35m (84.2ms)[0m  CREATE TABLE "recommendations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "isbn" varchar, "title" varchar, "description" varchar, "author" varchar, "status" varchar DEFAULT 'Pending', "comment" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (85.2ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (100.9ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (150.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (113.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (78.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151007194532')
+  [1m[36m (76.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150927022736')[0m
+  [1m[35m (78.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150927033558')
+  [1m[36m (84.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150927034355')[0m
+  [1m[35m (79.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150927034502')
+  [1m[36m (75.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150927042209')[0m
+  [1m[35m (69.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150928015239')
+  [1m[36m (74.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151007190551')[0m
+  [1m[35m (86.1ms)[0m  CREATE TABLE "admins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (88.9ms)[0m  CREATE UNIQUE INDEX "index_admins_on_email" ON "admins" ("email")
+  [1m[36m (80.3ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "isbn" varchar, "title" varchar, "description" varchar, "author" varchar, "status" varchar DEFAULT 'In Library', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (85.4ms)[0m  CREATE UNIQUE INDEX "index_books_on_isbn" ON "books" ("isbn")
+  [1m[36m (102.0ms)[0m  [1mCREATE TABLE "checkouts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer, "book_id" integer) [0m
+  [1m[35m (103.0ms)[0m  CREATE  INDEX "index_checkouts_on_book_id" ON "checkouts" ("book_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_checkouts_on_book_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_checkouts_on_book_id' AND type='index'
+[0m
+  [1m[35m (140.0ms)[0m  CREATE  INDEX "index_checkouts_on_user_id" ON "checkouts" ("user_id")
+  [1m[36m (103.0ms)[0m  [1mCREATE TABLE "notifications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer, "book_id" integer) [0m
+  [1m[35m (118.2ms)[0m  CREATE  INDEX "index_notifications_on_book_id" ON "notifications" ("book_id")
+  [1m[36m (1.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_notifications_on_book_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_notifications_on_book_id' AND type='index'
+[0m
+  [1m[35m (101.5ms)[0m  CREATE  INDEX "index_notifications_on_user_id" ON "notifications" ("user_id")
+  [1m[36m (99.2ms)[0m  [1mCREATE TABLE "recommendations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "isbn" varchar, "title" varchar, "description" varchar, "author" varchar, "status" varchar DEFAULT 'Pending', "comment" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (112.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (81.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (101.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (142.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (4.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (98.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151007194532')[0m
+  [1m[35m (226.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150927022736')
+  [1m[36m (123.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150927033558')[0m
+  [1m[35m (104.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150927034355')
+  [1m[36m (77.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150927034502')[0m
+  [1m[35m (77.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150927042209')
+  [1m[36m (89.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150928015239')[0m
+  [1m[35m (72.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151007190551')
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107556' LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107556"], ["title", "Book No.1"], ["description", "description 1"], ["author", "Author 1"], ["created_at", "2015-10-13 02:15:09.880946"], ["updated_at", "2015-10-13 02:15:09.880946"]]
+  [1m[36m (103.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36mBook Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107557' LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107557"], ["title", "Book No.2"], ["description", "description 2"], ["author", "Author 2"], ["created_at", "2015-10-13 02:15:09.994126"], ["updated_at", "2015-10-13 02:15:09.994126"]]
+  [1m[36m (97.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107558' LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107558"], ["title", "Book No.3"], ["description", "description 3"], ["author", "Author 3"], ["created_at", "2015-10-13 02:15:10.099935"], ["updated_at", "2015-10-13 02:15:10.099935"]]
+  [1m[36m (91.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107559' LIMIT 1[0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107559"], ["title", "Book No.4"], ["description", "description 4"], ["author", "Author 4"], ["created_at", "2015-10-13 02:15:10.199594"], ["updated_at", "2015-10-13 02:15:10.199594"]]
+  [1m[36m (107.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107560' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107560"], ["title", "Book No.5"], ["description", "description 5"], ["author", "Author 5"], ["created_at", "2015-10-13 02:15:10.315728"], ["updated_at", "2015-10-13 02:15:10.315728"]]
+  [1m[36m (160.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107561' LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107561"], ["title", "Book No.6"], ["description", "description 6"], ["author", "Author 6"], ["created_at", "2015-10-13 02:15:10.483935"], ["updated_at", "2015-10-13 02:15:10.483935"]]
+  [1m[36m (128.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107562' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107562"], ["title", "Book No.7"], ["description", "description 7"], ["author", "Author 7"], ["created_at", "2015-10-13 02:15:10.622472"], ["updated_at", "2015-10-13 02:15:10.622472"]]
+  [1m[36m (84.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107563' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107563"], ["title", "Book No.8"], ["description", "description 8"], ["author", "Author 8"], ["created_at", "2015-10-13 02:15:10.717753"], ["updated_at", "2015-10-13 02:15:10.717753"]]
+  [1m[36m (79.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107564' LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107564"], ["title", "Book No.9"], ["description", "description 9"], ["author", "Author 9"], ["created_at", "2015-10-13 02:15:10.810264"], ["updated_at", "2015-10-13 02:15:10.810264"]]
+  [1m[36m (95.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107565' LIMIT 1[0m
+  [1m[35mSQL (8.0ms)[0m  INSERT INTO "books" ("isbn", "title", "description", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["isbn", "107565"], ["title", "Book No.10"], ["description", "description 10"], ["author", "Author 10"], ["created_at", "2015-10-13 02:15:10.914589"], ["updated_at", "2015-10-13 02:15:10.914589"]]
+  [1m[36m (109.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36mAdmin Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "admins" WHERE LOWER("admins"."email") = LOWER('msaikia@ncsu.edu') LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "admins" ("name", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Moharnab Saikia"], ["password_digest", "$2a$10$vdz26XFxvdpSuudCO4eqjexDdtsKtKvnLZvrbJX7odeP.N1TIkseK"], ["email", "msaikia@ncsu.edu"], ["created_at", "2015-10-13 02:15:11.246721"], ["updated_at", "2015-10-13 02:15:11.246721"]]
+  [1m[36m (102.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mAdmin Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "admins" WHERE LOWER("admins"."email") = LOWER('admin@ncsu.edu') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "admins" ("name", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Master Admin"], ["password_digest", "$2a$10$Yul4tm1217U.Zs4WHCtmRe5L/FBPwDCK2QgeidG4/jzs4tZgOoWoG"], ["email", "admin@ncsu.edu"], ["created_at", "2015-10-13 02:15:11.547281"], ["updated_at", "2015-10-13 02:15:11.547281"]]
+  [1m[36m (83.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mAdmin Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "admins" WHERE LOWER("admins"."email") = LOWER('ssweene2@ncsu.edu') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "admins" ("name", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Shane Sweeney"], ["password_digest", "$2a$10$tgPbVdf9gvVq8uLsr6Wn.u/owXriJUpJ8QcGH1vpP.Ky1fdFjLlqW"], ["email", "ssweene2@ncsu.edu"], ["created_at", "2015-10-13 02:15:11.830522"], ["updated_at", "2015-10-13 02:15:11.830522"]]
+  [1m[36m (88.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mAdmin Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "admins" WHERE LOWER("admins"."email") = LOWER('kmjos@ncsu.edu') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "admins" ("name", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Kellie Jos"], ["password_digest", "$2a$10$FRZjVk8E.SI1OmKH28VgcOyhQIRay5GF0i8/7/pf/U5CEQF4Nkome"], ["email", "kmjos@ncsu.edu"], ["created_at", "2015-10-13 02:15:12.115443"], ["updated_at", "2015-10-13 02:15:12.115443"]]
+  [1m[36m (81.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('kmjos@ncsu.edu') LIMIT 1[0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "users" ("name", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Kellie Jos"], ["password_digest", "$2a$10$V2DDF.GcEmvCD4d4BakuXesxZf7Dv39uEAmRQ7b4TADKaWXXrLn/u"], ["email", "kmjos@ncsu.edu"], ["created_at", "2015-10-13 02:15:12.448642"], ["updated_at", "2015-10-13 02:15:12.448642"]]
+  [1m[36m (80.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('msaikia@ncsu.edu') LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("name", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Moharnab"], ["password_digest", "$2a$10$YuBQ0mvO6y3B97Hiq77Sb.QI/6LPX98xI.OkL3j4t7O.RNaxksn/i"], ["email", "msaikia@ncsu.edu"], ["created_at", "2015-10-13 02:15:12.729859"], ["updated_at", "2015-10-13 02:15:12.729859"]]
+  [1m[36m (99.0ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_admins_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_admins_on_email' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_books_on_isbn' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_books_on_isbn' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_checkouts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_checkouts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_checkouts_on_book_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_checkouts_on_book_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_notifications_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_notifications_on_user_id' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_notifications_on_book_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_notifications_on_book_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mBook Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "books" WHERE "books"."isbn" = '107556' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+
+
+Started GET "/" for ::1 at 2015-10-12 19:19:36 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (12.0ms)
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_header.html.erb (95.9ms)
+Completed 200 OK in 2520ms (Views: 2455.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/javascripts/defaults.js" for ::1 at 2015-10-12 19:19:41 -0700
+
+ActionController::RoutingError (No route matches [GET] "/javascripts/defaults.js"):
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (17.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (91.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (518.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (234.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (480.0ms)
+
+
+Started GET "/books" for ::1 at 2015-10-12 19:19:54 -0700
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.0ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1[0m
+  Rendered books/index.html.erb within layouts/application (93.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_header.html.erb (7.9ms)
+Completed 200 OK in 1296ms (Views: 1271.9ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/books?utf8=%E2%9C%93&search=107556&commit=Search" for ::1 at 2015-10-12 19:20:02 -0700
+Processing by BooksController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"107556", "commit"=>"Search"}
+  [1m[35mBook Load (1.0ms)[0m  SELECT "books".* FROM "books" WHERE (isbn like '%107556%' or author like '%107556%' or
+description like '%107556%' or title like '%107556%' or status like '%107556%')
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mAdmin Load (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1[0m
+  Rendered books/index.html.erb within layouts/application (25.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_header.html.erb (6.0ms)
+Completed 200 OK in 1243ms (Views: 1240.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/javascripts/defaults.js" for ::1 at 2015-10-12 19:20:04 -0700
+
+ActionController::RoutingError (No route matches [GET] "/javascripts/defaults.js"):
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (9.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (262.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (113.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (249.0ms)
+
+
+Started GET "/login/admin" for ::1 at 2015-10-12 19:20:08 -0700
+Processing by SessionsController#new_admin as HTML
+  [1m[35mAdmin Load (1.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  Rendered sessions/new_admin.html.erb within layouts/application (50.0ms)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" IS NULL LIMIT 1
+  Rendered layouts/_header.html.erb (8.0ms)
+Completed 200 OK in 1190ms (Views: 1183.1ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/login/admin" for ::1 at 2015-10-12 19:20:18 -0700
+Processing by SessionsController#create_admin as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0yozz1ilAn2xmIP4oFK0uGtdYBTs0Oj5wLcgioSpXmx4OltY+Fyw++m5vkV8lnD35T96KLqbg1HBfBFnp9K/hQ==", "session"=>{"email"=>"msaikia@ncsu.edu", "password"=>"[FILTERED]"}, "commit"=>"Log In!"}
+  [1m[36mAdmin Load (1.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."email" = ? LIMIT 1[0m  [["email", "msaikia@ncsu.edu"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 215ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/" for ::1 at 2015-10-12 19:20:18 -0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mAdmin Load (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (8.0ms)
+Completed 200 OK in 1157ms (Views: 1154.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/defaults.js" for ::1 at 2015-10-12 19:20:19 -0700
+
+ActionController::RoutingError (No route matches [GET] "/javascripts/defaults.js"):
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (8.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (237.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (106.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (256.0ms)
