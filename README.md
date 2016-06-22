@@ -1,26 +1,45 @@
 
-#Ruby On Rails Program 1
-#Team Members:
-Kellie Jos
-Moharnab Saikia 
-Shane Sweeney
-#Overview Library Web Application Deployment: 
+# Ruby On Rails Program 1
+
+## Team Members:
+- Kellie Jos
+- Moharnab Saikia 
+- Shane Sweeney
+
+## Overview Library Web Application Deployment: 
 [Heroku URL](https://fathomless-refuge-8356.herokuapp.com)
-#How to Use LibSys:
-#Preconfiged Admin: email: admin@ncsu.edu Password:password
+
+## How to Use LibSys:
+
+## Preconfiged Admin: 
+
+email: admin@ncsu.edu 
+password:password
+
 Download from Github at: github.com/ssweene2/RubyOnRailsProgram1- Using Ubuntu Terminal navigate to the following directory and run rails server: /trunk/rails server if the following is encountered: Could not find pg-0.18.3 in any of the sources Run `bundle install` to install missing gems. please run the following command: bundle install –without production
 Then run rails server again.
+
 ##Extra features implemented: Recommendations and email notifications
+
 ##Note:Whenever a user is deleted all the checkout history is also deleted.Also you can't delete a book which has been checked out or a user who has a book checked out.
+
 #Admin Features:
+
 ##Log in as admin:
+ 
  Select->Admin Login from the right hand side of the page. Enter the following for each field: Email: admin@ncsu.edu  Password:password Select ->login.
+
 ##Edit admin profile: 
+
 Follow steps to log in as admin above. Select ->Admins -> Show (on user with email: admin@ncsu.edu) Select-> Edit. Edit Name value and select ->Update Admin.
 Logout After recieving the update message from updating the admin profile above, select Logout.
+
 ##Creating other admins:
+ 
  Log in as admin as described above. If you encounter issues logging in with admin simply perform a refresh on the web page. Select ->Admins ->New Admin. Fill out the fields for Name, Email, Password and Password confirmation. Then select ->Create Admin. For example: Name: sean Email: james@yahoo.com Password: 1234 Password confirmation: 1234 Select Create Admin (Observe you get an error saying password is too short) Re-enter 12345678 for Password and Password confirmation. Select Create Admin.
+
 ##List other admins:
+ 
  Select admins after successfully creating above admin.
 
 ##View details of admins except password:
